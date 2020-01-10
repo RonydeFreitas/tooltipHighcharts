@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+
+  </head>
+  <body>
+
+        <div id="container" style="width:100%; height:400px;"></div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script>
+    Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Stacked column chart'
+    },
+    xAxis: {
+        categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total fruit consumption'
+        },
+        stackLabels: {
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: ( // theme
+                    Highcharts.defaultOptions.title.style &&
+                    Highcharts.defaultOptions.title.style.color
+                ) || 'gray'
+            }
+        }
+    },
+    legend: {
+        align: 'right',
+        x: -30,
+        verticalAlign: 'top',
+        y: 25,
+        floating: true,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+    },
+    tooltip: {
+        headerFormat: '<b>{point.x}</b><br/>',
+        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    series: [{
+        name: 'John',
+        data: [5, 3, 4, 7, 2]
+    }, {
+        name: 'Jane',
+        data: [2, 2, 3, 2, 1]
+    }, {
+        name: 'Joe',
+        data: [3, 4, 4, 2, 5]
+    }]
+});
+    </script>
+
+
+<!-- Código para mudar o tooltip Highcharts com o hover -->
+
+<!-- Para personalizar um tooltip é necessário apenas substituir o valor do atributo (d) da tag (path) *Linha 100-->
+<script>
+
+    var elementos = document.querySelectorAll(".highcharts-series");
+
+    for(var el of elementos){
+        el.addEventListener("mouseenter", mouseEnter);
+    }
+
+    function mouseEnter(){
+        for(var i = 0; i < 4; i++){
+            document.getElementsByClassName("highcharts-label-box highcharts-tooltip-box")[i].outerHTML = `
+  <path fill="${this.children[0].attributes.fill.value}" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow-tooltip" d="M16.16,39.767l-8-7.226A17.657,17.657,0,0,1,17.5,0a17.657,17.657,0,0,1,9.342,32.541l-8,7.226a2,2,0,0,1-2.681,0Z"> </path>`;
+        }
+    }
+
+</script>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  
+</html>
