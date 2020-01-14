@@ -95,7 +95,7 @@
     }
 
     function mouseEnter(){
-        for(var i = 0; i < 4; i++){
+        for(var i = 0; i < document.getElementsByClassName("highcharts-label-box highcharts-tooltip-box").length; i++){
             document.getElementsByClassName("highcharts-label-box highcharts-tooltip-box")[i].outerHTML = `
   <path fill="${this.children[0].attributes.fill.value}" class="highcharts-label-box highcharts-tooltip-box highcharts-shadow-tooltip" d="M16.16,39.767l-8-7.226A17.657,17.657,0,0,1,17.5,0a17.657,17.657,0,0,1,9.342,32.541l-8,7.226a2,2,0,0,1-2.681,0Z"> </path>`;
         }
